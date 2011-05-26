@@ -280,7 +280,8 @@ public class Api {
 		Utils.setLog(log);
 	}
     
-    private HttpClient getHttpClient() {
+    private DefaultHttpClient getHttpClient() {
+   
         if (_httpClient == null) {
             _httpClient = new DefaultHttpClient();
         }
