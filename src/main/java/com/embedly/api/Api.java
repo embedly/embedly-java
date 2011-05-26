@@ -17,9 +17,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 
 /**
  * Api is used to access the Embedly API and Pro endpoints.
@@ -29,7 +30,7 @@ public class Api {
     private String host;
     private String userAgent;
 
-    private HttpClient _httpClient;
+    private DefaultHttpClient _httpClient;
     private ResponseHandler<String> _responseHandler;
 
 	public Api(String userAgent) {
@@ -293,4 +294,14 @@ public class Api {
         return _responseHandler;
     }
 
+    /**
+     * Set Timeout on Blocking Socket Operations
+     * @param timeout Timeout in milliseconds
+     */
+    public void setSoTimeout( int timeout ) {
+    	DefaultHttpClient client = getHttpClient();
+    	HttpParams params = client.getParams();
+    	HttpConnectionParams.setSoTimeout( params, timeout );
+    	client.setParams( params );    	    	    	
+    }	
 }
