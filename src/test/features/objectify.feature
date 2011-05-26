@@ -11,4 +11,4 @@ Feature: Objectify
 
         Examples:
             | url                            | metadesc                 |
-            | http://tweetphoto.com/14784358 | Plixi allows user to ins |
+            | http://yfrog.com/h855mugj      | yfrog free image and vid |
