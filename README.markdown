@@ -6,6 +6,14 @@ http://api.embed.ly/docs.
 
 ## Installing
 
+We keep the latest release on MavenCentral.
+
+    <dependency>
+        <groupId>com.embedly</groupId>
+        <artifactId>embedly-api</artifactId>
+        <version>0.1.2</version>
+    </dependency>
+
 If you would like cutting edge, then you can clone and install HEAD.
 
     git clone git@github.com:dokipen/embedly-java.git
