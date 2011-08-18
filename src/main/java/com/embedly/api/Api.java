@@ -219,15 +219,24 @@ public class Api {
      *
      * @return JSONArray of JSONObjects.  
      */
-    private JSONArray apicall(String version, String action,
+    @SuppressWarnings("unchecked")
+	private JSONArray apicall(String version, String action,
             Map<String, Object> params) {
         ResponseMaker resp = new ResponseMaker();
         try {
             ApiParameters query = new ApiParameters();
             for (Map.Entry<String, Object> entry : params.entrySet()) {
-                if (entry.getValue() instanceof String[]) {
+            	if (entry.getValue() instanceof String[]) {
                     query.push(entry.getKey().toString(),
                             (String[])entry.getValue());
+            	} else if (entry.getValue() instanceof java.util.Collection) {
+            		try {
+	                    query.push(entry.getKey().toString(),
+	                            (java.util.Collection<String>)entry.getValue());
+            		} catch(Exception e) {
+                        query.push(entry.getKey().toString(),
+                                entry.getValue().toString());
+            		}
                 } else {
                     query.push(entry.getKey().toString(),
                             entry.getValue().toString());

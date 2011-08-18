@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -56,10 +57,21 @@ class ApiParameters {
      * @param values
      */
     public void push(String name, String[] value) {
-        name = filterName(name);
-        ArrayList<String> param = getParam(name);
-        param.addAll(Arrays.asList(value));
-    }
+        this.push(name, Arrays.asList(value));
+    }    
+    
+   /**
+    * Add a collection of parameter values.
+    *
+    * @param name
+    * 
+    * @param values
+    */
+   public void push(String name, Collection<String> value) {
+       name = filterName(name);
+       ArrayList<String> param = getParam(name);
+       param.addAll(value);
+   }
 
     /**
      * Get an array of parameter values.  Returns an empty
