@@ -74,9 +74,14 @@ If you would like cutting edge, then you can clone and install HEAD.
 
 ## Release
 
-    Add -Drelease=true -Dsign=true to gradle command line.  Be sure
-    gradle.settings has the appropriate settings and that version is
+    Add -Drelease=true -Dsign=true to gradle command line.  
+
+    $ gradle -Drelease=true -Dsign=true uploadArchives
+    
+    Be sure gradle.settings has the appropriate settings and that version is
     not SNAPSHOT.
+
+    If you are a maintainer, then you can log in to oss.sonatype.org and release.
 
 ## Note on Patches/Pull Requests
 
