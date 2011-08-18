@@ -59,6 +59,12 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc.destinationDir
 }
 
+task runSimple(dependsOn: [classes, testClasses], type: JavaExec) {
+    main = 'com.embedly.examples.Simple'
+    classpath = sourceSets.main.runtimeClasspath + sourceSets.test.runtimeClasspath 
+}
+    
+
 artifacts {
     archives javadocJar
     archives sourcesJar
