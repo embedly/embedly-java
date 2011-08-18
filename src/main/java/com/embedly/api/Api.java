@@ -74,10 +74,8 @@ public class Api {
                     "Api object");
         }
 
-        if (this.key == null && this.host == null) {
+        if (this.host == null) {
             this.host = "http://api.embed.ly";
-        } else if (this.host == null) {
-            this.host = "http://pro.embed.ly";
         }
 
         // prime these
