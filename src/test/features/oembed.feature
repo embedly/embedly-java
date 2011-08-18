@@ -5,7 +5,7 @@ Feature: OEmbed
     Because I want and oembed for a specific url
 
     Scenario Outline: Get the provider_url
-        Given an embedly host
+        Given an embedly host with key
         When oembed is called with the <url> URL
         Then the provider_url should be <provider_url>
 
@@ -18,7 +18,7 @@ Feature: OEmbed
 
 
     Scenario Outline: Get the types
-        Given an embedly host
+        Given an embedly host with key
         When oembed is called with the <url> URL
         Then the type should be <type>
 
@@ -31,7 +31,7 @@ Feature: OEmbed
 
 
     Scenario Outline: Get the provider_url with force flag
-        Given an embedly host
+        Given an embedly host with key
         When oembed is called with the <url> URL and force flag
         Then the provider_url should be <provider_url>
 
@@ -41,7 +41,7 @@ Feature: OEmbed
 
 
     Scenario Outline: Get multiple provider_urls
-        Given an embedly host
+        Given an embedly host with key
         When oembed is called with the <urls> URLs
         Then provider_url should be <provider_urls>
 
@@ -51,7 +51,7 @@ Feature: OEmbed
             | http://www.youtube.com/watch?v=Zk7dDekYej0,http://yfrog.com/h855mugj                      | http://www.youtube.com/,http://yfrog.com      |
 
 
-    Scenario Outline: Get the provider_url with pro
+    Scenario Outline: Get the provider_url
         Given an embedly host with key
         When oembed is called with the <url> URL
         Then the provider_url should be <provider_url>
@@ -64,7 +64,7 @@ Feature: OEmbed
 
 
     Scenario Outline: Attempt to get 404 URL
-        Given an embedly host
+        Given an embedly host with key
         When oembed is called with the <url> URL
         Then type should be error
         And error_code should be 404
@@ -73,12 +73,11 @@ Feature: OEmbed
         Examples:
             | url                                                              |
             | http://www.youtube.com/watch/is/a/bad/url                        |
-            | http://www.scribd.com/doc/zfldsf/asdfkljlas/klajsdlfkasdf        |
             | http://fav.me/alsfsdf                                            |
         
 
     Scenario Outline: Attempt multi get 404 URLs
-        Given an embedly host
+        Given an embedly host with key
         When oembed is called with the <urls> URLs
         Then error_code should be <errcode>
         And type should be <types>
@@ -86,21 +85,7 @@ Feature: OEmbed
         Examples:
             | urls                                                                             | errcode | types       |
             | http://www.youtube.com/watch/a/bassd/url,http://www.youtube.com/watch/ldf/asdlfj | 404,404 | error,error |
-            | http://www.scribd.com/doc/lsbsdlfldsf/kl,http://www.scribd.com/doc/zasdf/asdfl   | 404,404 | error,error |
-            | http://www.youtube.com/watch/zzzzasdf/kl,http://yfrog.com/h855mugj               | 404,    | error,photo |
-            | http://yfrog.com/h855mugj,http://www.scribd.com/doc/asdfasdfasdf                 | ,404    | photo,error |
+            | http://www.youtube.com/watch/ldf/asdlfj,http://yfrog.com/h855mugj                | 404,    | error,photo |
+            | http://yfrog.com/h855mugj,http://www.youtube.com/watch/ldf/asdlfj                | ,404    | photo,error |
         
-    Scenario Outline: Attempt at non-api service without key
-        Given an embedly host
-        When oembed is called with the <url> URL
-        Then error_code should be 401
-        And error_message should be This service requires an Embedly Pro account
-        And type should be error
-
-        Examples:
-            | url                                                                              | 
-            | http://hn.embed.ly/                                                              | 
-            | http://bit.ly/enZRxO                                                             | 
-            | http://techcrunch.com/2011/02/03/linkedins-next-data-dive-professional-skills/   | 
-            | http://teachertube.com/rssPhoto.php                                              | 
-            | http://goo.gl/y1i9p                                                              | 
+   

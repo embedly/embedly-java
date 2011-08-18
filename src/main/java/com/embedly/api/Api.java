@@ -58,7 +58,7 @@ public class Api {
      *
      * @param userAgent A userAgent string containing contact information
      *
-     * @param key       Your Embedly PRO key
+     * @param key       Your Embedly key
      * 
      * @param host      An alternative hostname, used for debugging.  
      *                  ex. "http://localhost"
@@ -71,6 +71,12 @@ public class Api {
         if (this.userAgent == null) {
             throw new RuntimeException(
                     "You must specify a userAgent when constructing an " +
+                    "Api object");
+        }
+        
+        if (this.key == null) {
+            throw new RuntimeException(
+                    "You must specify a key when constructing an " +
                     "Api object");
         }
 
@@ -141,11 +147,6 @@ public class Api {
         try {
             // fail safe response
             resp = new JSONArray("[]");
-
-            if (key != null) {
-            	getLog().error("Pro doesn't support services");
-                throw new RuntimeException("Pro doesn't support services");
-            }
 
             String call = this.host+"/1/services/javascript";
             resp = new JSONArray(simpleHTTP(getHttpClient(), getResponseHandler(), 
@@ -244,13 +245,8 @@ public class Api {
             }
 
             ArrayList<String> urls = query.getParam("urls");
-            if (key != null) {
-                query.push("key", key);
-                urls = resp.prepare(urls, Pattern.compile(".*"));
-            } else {
-                getLog().debug("checking urls against services");
-                urls = resp.prepare(urls, servicesPattern());
-            }
+            query.push("key", key);
+            urls = resp.prepare(urls, Pattern.compile(".*"));
 
             if (urls.size() > 0) {
                 String call = this.host+"/"+version+"/"+action+"?"+

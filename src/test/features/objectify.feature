@@ -4,7 +4,7 @@ Feature: Objectify
     I want to call the the embedly api
     Because I want to objectify a url
 
-    Scenario Outline: Get the meta description with pro
+    Scenario Outline: Get the meta description
         Given an embedly host with key
         When objectify is called with the <url> URL
         Then the meta.description should start with <metadesc>
