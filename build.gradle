@@ -5,7 +5,7 @@ apply plugin: 'eclipse'
 apply plugin:com.smokejumperit.gradle.CukePlugin
 apply plugin:de.huxhorn.gradle.pgp.PgpPlugin
 
-version = '0.1.4-SNAPSHOT'
+version = '0.1.5-SNAPSHOT'
 
 configurations {
     runtime.exclude module: 'groovy'
