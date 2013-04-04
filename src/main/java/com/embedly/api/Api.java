@@ -43,10 +43,9 @@ public class Api {
 
     /**
      * The Api object is used to access both Embedly API
-     * and Embedly Pro.  When a key is used, the Pro endpoints
-     * oembed, preview and objectify are available.  When no
-     * key is used, the API endpoints services and oembed are
-     * available.
+     * and Embedly Pro.  When a key is used, the Pro endpoints oembed, extract,
+     * preview and objectify are available.  When no key is used, the API
+     * endpoints services and oembed are available.
      *
      * A userAgent containing, at the very least, a contact
      * email address for the client applications operator.  This
@@ -102,6 +101,21 @@ public class Api {
      */
     public JSONArray oembed(Map<String, Object> params) {
         return this.apicall("1", "oembed", params);
+    }
+
+    /**
+     * Call the extract endpoint.
+     * 
+     * <a target="_top" href="http://embed.ly/docs/extract">Embedly Extract Docs</a>
+     *
+     * @param params A map of name value pairs.  The value should be either
+     *               a String, or a String[].  At this time, String[] is only
+     *               valid for the "urls" parameter.
+     *
+     * @return JSONArray of JSONObjects.  
+     */
+    public JSONArray extract(Map<String, Object> params) {
+        return this.apicall("1", "extract", params);
     }
 
     /**
@@ -205,8 +219,8 @@ public class Api {
 
     /**
      * Generic Embedly endpoint call.  This shouldn't be called directly, but
-     * is used internally by the oembed, objectify and preview endpoint
-     * methods.
+     * is used internally by the oembed, extract, objectify and preview
+     * endpoint methods.
      *
      * <a target="_top" href="https://pro.embed.ly/docs/">Embedly Docs</a>
      *

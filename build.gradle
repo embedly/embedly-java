@@ -17,7 +17,8 @@ buildscript {
         mavenRepo urls:'http://repo.smokejumperit.com'
     }
     dependencies {
-        classpath 'com.smokejumperit:gradle-plugins:0.7.1-SNAPSHOT'
+        classpath 'com.smokejumperit:gradle-plugins:0.8.2'
+        classpath 'org.yaml:snakeyaml:1.12'
         classpath 'de.huxhorn.gradle:de.huxhorn.gradle.pgp-plugin:0.0.3'
     }
 }
