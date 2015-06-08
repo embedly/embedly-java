@@ -11,7 +11,7 @@ We keep the latest release on MavenCentral.
     <dependency>
         <groupId>com.embedly</groupId>
         <artifactId>embedly-api</artifactId>
-        <version>0.1.3</version>
+        <version>0.1.5</version>
     </dependency>
 
 If you would like cutting edge, then you can clone and install HEAD.
